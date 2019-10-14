@@ -1,0 +1,18 @@
+// Place all the styles related to the cocktails controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.background-banner{
+  width: 100vw;
+  min-height: 100vh;
+  background-image: url('https://cdn.dribbble.com/users/278549/screenshots/7448782/media/87fe1bff113e26825d8f58e3b1bbb785.png');
+  background-position: top;
+  background-size: cover;
+  
+  .container {
+    padding-top: 16px;
+    h1{
+    text-align: center;
+    }
+  }
+};

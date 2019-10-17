@@ -17,7 +17,7 @@
     <div class="cards">
       <% @cocktails.each do |cocktail| %>
       <div class="card-cocktail mr-3 hvr-grow-shadow">
-        <%= link_to("#", data: { toggle: "modal", target: "#cocktail_show"}) do %>
+        <%= link_to("#", data: { toggle: "modal", target: "#cocktail_#{cocktail.id}"}) do %>
         <img src="https://images.unsplash.com/photo-1546171753-97d7676e4602?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="">
         <% end %>
         <div class="card-cocktail-infos align-items-stretch">
@@ -30,7 +30,7 @@
           <div>RATING</div>
         </div>
       </div>
-      <div class="modal fade" id="cocktail_show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal fade" id="<%= "cocktail_#{cocktail.id}" %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">

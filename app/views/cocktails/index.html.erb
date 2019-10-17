@@ -1,29 +1,68 @@
-
-<div class="navbar-lewagon">
-  <span>Cocktail Love</span>
-</div>
-
 <div class="background-banner"> 
   <div class="container">
 
-  <h1>Nome do Site</h1>
+    <h1>Nome do Site</h1>
 
-  <div class="cards d-flex">
-    <% @cocktails.each do |cocktail| %>
-    <div class="card-cocktail">
-      <div class="card-cocktail-infos">
-        <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
-        <% cocktail.doses.each do |dose| %>
-        <p><%= dose.ingredient.name %> - <%= dose.description %></p>
-        <% end %>
-      </div>
+    <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+    <div class="search-form-control form-group">
+      <%= f.input :cocktail_name, input_html: {value: ""}, label: false, placeholder: "E.x. Mojito", class: "form-control string required" %>   
+      <button name="button" type="submit" class="btn btn-primary">
+        <i class="fas fa-search"></i> Search a Cocktail
+      </button>
     </div>
     <% end %>
+
+    <%= link_to "Want to add a Cocktail Recipe?", new_cocktail_path, class: "btn btn-primary mb-3" %>
+
+    <div class="cards">
+      <% @cocktails.each do |cocktail| %>
+      <div class="card-cocktail mr-3 hvr-grow-shadow">
+        <%= link_to("#", data: { toggle: "modal", target: "#cocktail_show"}) do %>
+        <img src="https://images.unsplash.com/photo-1546171753-97d7676e4602?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="">
+        <% end %>
+        <div class="card-cocktail-infos align-items-stretch">
+          <div>
+            <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
+            <% cocktail.doses.each do |dose| %>
+            <p><%= dose.ingredient.name %> - <%= dose.description %></p>
+            <% end %>
+          </div>
+          <div>RATING</div>
+        </div>
+      </div>
+      <div class="modal fade" id="cocktail_show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><%= cocktail.name %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <% cocktail.doses.each do |dose| %>
+  <h1><%= dose.ingredient.name %></h1>  <p><%= dose.description %></p>
+  <%= link_to "delete this shit", cocktail_dose_path(cocktail, dose), method: 'delete' %>
+  <% end %>
+  
+  <%= link_to "Add item to Recipe", new_cocktail_dose_path(cocktail), class: "btn btn-primary" %>
+  <%= link_to "Back to all Cocktails", cocktails_path, class: "btn btn-primary" %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
+    </div>
   </div>
-
-
-  <%= link_to "Want to add a Cocktail Recipe?", new_cocktail_path, class: "btn btn-primary" %>
-
 </div>
-</div>
+
+
+<!-- Modal -->
+
 

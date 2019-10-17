@@ -1,10 +1,13 @@
 .card-cocktail {
-  overflow: hidden;
+  overflow: auto;
   background: white;
   z-index: 1;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width:300px;
+  height:500px;
+  border-radius: 16px;
+  z-index:1;
   img {
-    height: 200px;
+    height:80%;
     width: 100%;
     object-fit: cover;
   }
@@ -24,6 +27,9 @@
     justify-content: space-between;
     align-items: flex-end;
     position: relative;
+    margin-top: -16px;
+    border-radius:16px;
+    background-color: white;
 
     .card-cocktail-rating {
       position: absolute;
@@ -33,7 +39,4 @@
     }
   }
 }
-
-
-
 
